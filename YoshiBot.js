@@ -228,7 +228,28 @@ bot.on("message", function (msg) {
                     var options = msg.content.substring(5, msg.content.length).split(",");
                     var randomChoice = Math.floor(Math.random() * options.length);
                     bot.sendMessage(msg.channel, "You must go with" + options[randomChoice] + ", " + msg.author + ".");
+                    break;
 
+                case "!subr":
+                    var subr = msg.content.substring(6);
+                    request("https://www.reddit.com/r/" + subr + "/hot/.json", function (error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            var srThing = JSON.parse(body);
+                            var randPost = Math.floor(Math.random() * srThing.data.children.length);
+                            if (typeof (srThing.data.children) != "undefined") {
+                                bot.sendMessage(msg.channel, srThing.data.children[randPost].data.url);
+                            }
+                            else {
+                                bot.sendMessage(msg.channel, "I don't believe that's a subreddit.");
+                            }
+                        }
+                        else {
+                            console.log(error);
+                            bot.sendMessage(msg.channel, error);
+                            bot.sendMessage(msg.channel, "I'm fucking up and I don't know why.");
+                        }
+                    });
+                    break;
             }
         }
         else {
