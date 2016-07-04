@@ -20,7 +20,7 @@ A bot for the Discord app based on [Discord.js](https://github.com/hydrabolt/dis
 
 **!pick** - Will randomly pick from the number of options given by the user, separated by commas and spaces. (Ex. !pick option1, option2, option3)
 
-**!subr** - Will return a random post from the \"hot\" section of the user given subreddit. (Ex. !subr wheredidthesodago)
+**!subr** - Will return a random post from the "hot" section of the user given subreddit. (Ex. !subr wheredidthesodago)
 
 **!woof** - Returns a random woof image.
 
